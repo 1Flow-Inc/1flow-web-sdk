@@ -65,7 +65,7 @@ const __keys = {
         __es:"complete_events"
     },
     temp:"one_flow_temp_data",
-    _urlImg_CSS:"./",
+    _urlImg_CSS:"https://1flow.app/js/",
     _js_css_root:"OneFlow-stylesheet"
 
 }
@@ -73,7 +73,7 @@ const __keys = {
  * __p stand for post/get
  * __ stands for storage key
  */
-const oneFlow_sdk_const = {
+ const oneFlow_sdk_const = {
     __lg: [__keys.u, __keys.s],
     __p_log: [__keys.an, __keys.sid, __keys.s_id, __keys.m, __keys.l],
     _a_user: [__keys.au, __keys.sid, __keys.did, __keys.uid],
@@ -100,4 +100,4 @@ const oneFlow_sdk_const = {
     _js_css_root:__keys._js_css_root
 }
 
-exports = oneFlow_sdk_const;
+export {oneFlow_sdk_const}

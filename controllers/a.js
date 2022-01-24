@@ -1,12 +1,12 @@
+import {C} from './c'
+import {__result,_type,__one_flow_events,___ok} from '../index'
 /**
  * CREATE PROJECT ANAYATIC USER
  */
 
-class A extends C {
+ export class A extends C {
     constructor(__cn) {
         super(__cn)
-        //this.m = m
-        this.st = new S()
     }
 
     add=(__key,sys_id)=>{
@@ -80,4 +80,3 @@ class A extends C {
     }
 
 }
-exports = A;

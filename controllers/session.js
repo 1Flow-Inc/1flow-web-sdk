@@ -1,7 +1,10 @@
+import {C} from './c'
+import {F} from './f'
+import {__result,_type,__one_flow_events,___ok} from '../index'
 /**
  * CREATE USER SESSION
  */
-class Session extends C {
+export class Session extends C {
     sdk_version = {};
     constructor(__con) {
         super(__con);
@@ -116,5 +119,3 @@ class Session extends C {
 
 
 }
-
-exports = Session;

@@ -1,4 +1,9 @@
-class Survey extends surveySubmission {
+
+import {F} from './f'
+import {surveySubmission} from './surveySubmission'
+import {DefaultEvents} from './event'
+import {oneFlowGlob,__result,_type,__one_flow_events,___ok} from '../index'
+export class Survey extends surveySubmission {
     constructor() {
         super();
         this.currentSurvey = {};
@@ -864,4 +869,3 @@ class Survey extends surveySubmission {
         return __svg;
     }
 }
-exports = Survey

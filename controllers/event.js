@@ -1,4 +1,8 @@
-class Events extends C {
+import {C} from'./c'
+import {F} from'./f'
+import {Survey} from'./survey'
+import {oneFlowGlob,empty,__result,_type,__one_flow_events,___ok} from '../index'
+export class Events extends C {
     constructor(__con) {
         super(__con);
         this.u = this.getUrl(___ok.ie);
@@ -113,7 +117,7 @@ class Events extends C {
 }
 
 
-class DefaultEvents extends Events {
+export class DefaultEvents extends Events {
     constructor(__con) {
         super(__con);
     }
@@ -293,5 +297,3 @@ class DefaultEvents extends Events {
     }
 }
 
-exports = DefaultEvents;
-exports = Events;

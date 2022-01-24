@@ -1,8 +1,12 @@
+/*import {OneFlowHelpers} from './s'
+import {Survey} from './survey'*/
+import {__result,_type,__one_flow_events,___ok} from '../index'
+
 // E => Encryptor
 // C => Common Handler
 // OneflowSDK=> read config.json
 
-class E {
+export class E {
     constructor(__cn) {
         this.__cn = __cn;
     }
@@ -46,7 +50,7 @@ class E {
         return atob(__v)
     }
 }
-class C extends E {
+export class C extends E {
     __a_k_valid = '1FLOW API key is required'
     __key = null
     __cn
@@ -314,6 +318,7 @@ class C extends E {
      * @returns Helpler class Object
      */
     getHelpers = () => {
+        const {OneFlowHelpers}=require("./s");
         return new OneFlowHelpers();
     }
     /**
@@ -321,6 +326,7 @@ class C extends E {
    * @returns Survey  Class object 
    */
     getSurveyHelpers = () => {
+        const {Survey}=require("./survey");
         return new Survey();
     }
     /**
@@ -354,14 +360,13 @@ class C extends E {
             let el=this.ce('link',__attr);
             document.head.appendChild(el);
         }
-        
     }
 
 }
 /**
  * SDK CORE DETAILS CLASS
  */
-class OneflowSDK extends C {
+ export class OneflowSDK extends C {
     sdk_details = {
         app_version: "1.1",
         app_build_number: "0987",
@@ -370,7 +375,6 @@ class OneflowSDK extends C {
     }
     constructor() {
         super()
-        this.r = new F('');
     }
     /**
      * 
@@ -387,6 +391,3 @@ class OneflowSDK extends C {
         return this.sdk_details;
     }
 }
-exports = E;
-exports = C;
-exports = OneflowSDK;

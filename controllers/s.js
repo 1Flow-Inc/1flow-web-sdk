@@ -1,7 +1,10 @@
+import {C} from './c'
+import {empty,__result,_type,__one_flow_events,___ok} from '../index'
 /**
  * STORAGE CLASS FOR ONE FLOW SDK
  */
-class S extends C {
+
+ export class S extends C {
     constructor() {
         super()
         this.l = localStorage;
@@ -35,7 +38,7 @@ class S extends C {
 /**
  * Class For SDK HELPER FUNCTION CREATE IN THIS CLASS
  */
-class OneFlowHelpers extends S {
+export class OneFlowHelpers extends S {
     key = window.__1flow_key
     constructor() {
         super();
@@ -214,8 +217,6 @@ class OneFlowHelpers extends S {
          @param {String} type [height,width]
         */
     __screen_details = (type) => {
-        return (type == 'width') ? w().innerWidth : w().innerHeight
+        return (type == 'width') ? window.innerWidth : window.innerHeight
     }
 }
-exports = OneFlowHelpers;
-exports = S;

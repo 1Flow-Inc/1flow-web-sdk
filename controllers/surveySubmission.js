@@ -1,4 +1,7 @@
-class surveySubmission extends An {
+
+import {oneFlowGlob,__result,_type,__one_flow_events,___ok} from '../index'
+import {An} from './an'
+export class surveySubmission extends An {
     constructor() {
         super();
         this.answers = [];

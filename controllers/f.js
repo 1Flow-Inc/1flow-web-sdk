@@ -1,4 +1,6 @@
-class F extends S {
+import {S} from './s'
+import {__result,_type,__one_flow_events,___ok} from '../index'
+export class F extends S {
     constructor(_key) {
         super()
         this.__key = _key
@@ -109,4 +111,3 @@ class F extends S {
             });
     }
 }
-exports = F;

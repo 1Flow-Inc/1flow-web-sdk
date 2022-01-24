@@ -1,4 +1,5 @@
-class OneFlowEvent {
+import {empty,__result,_type,__one_flow_events,___ok} from '../index'
+export class OneFlowEvent {
     events = [];
     /**
      * 
@@ -76,4 +77,3 @@ class OneFlowEvent {
         return f instanceof Function
     }
 }
-exports = OneFlowEvent;
