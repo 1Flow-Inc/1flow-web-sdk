@@ -1,0 +1,29 @@
+{
+  "name": "javascript-sdk-merger",
+  "version": "1.0.0",
+  "description": "t=tag;\r s=selector",
+  "main": "javascript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node javascript.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1Flow-Inc/javascript-sdk.git"
+  },
+  "author": "Mcode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1Flow-Inc/javascript-sdk/issues"
+  },
+  "homepage": "https://github.com/1Flow-Inc/javascript-sdk#readme",
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "minify": "^8.0.3",
+    "multistream": "^4.1.0"
+  },
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.3.0"
+  }
+}

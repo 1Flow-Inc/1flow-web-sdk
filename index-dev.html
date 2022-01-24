@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<head>
+  
+    <script src="https://dev.1flow.app/js/1flow.js" data-api-key="oneflow_prod_u6NKK1Vx5xbx3TeOt3ASTGRABmN1gIhhnef53wwwGKo=="></script>
+    <script>  
+   //   setTimeout(()=>{  },2000)
+    </script>
+    <title>Javascript SDK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <form action="contact.html">
+        <button type="submit form-submisson">Submit </button>
+    </form>
+    <a href="contact.html" id="">Contact</a><BR>
+    <a href="javascript:void(0)" id="trigger_event">Trigger event</a><br>
+</body>
+
+</html>
+<script>
+    let element=document.getElementById("trigger_event");
+    element.addEventListener('click',function(){
+        console.log("=============CLICK TRIGGER");
+        _1flow.logEvent("sdk-event-2")
+        _1flow.logUser("Mcode_developer")
+    })
+</script>
+
+<h2>sadasdasD</h2>

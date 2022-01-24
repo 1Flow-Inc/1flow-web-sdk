@@ -1,0 +1,3 @@
+sonar-scanner.properties
+.scannerwork/*
+node_modules/*
