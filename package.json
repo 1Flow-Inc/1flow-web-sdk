@@ -1,5 +1,5 @@
 {
-  "name": "javascript-sdk-merger",
+  "name": "1flow-web-sdk",
   "version": "1.0.0",
   "description": "t=tag;\r s=selector",
   "main": "javascript.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1Flow-Inc/javascript-sdk.git"
+    "url": "git+https://github.com/1Flow-Inc/1flow-web-sdk.git"
   },
   "author": "Mcode",
   "license": "ISC",
