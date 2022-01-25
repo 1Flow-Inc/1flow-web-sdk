@@ -68,14 +68,40 @@ export const oneFlowEvents = (name, data, callback) => {
   }, __in);
 };
 
+const customEncryptorMethod = (type = 'MWZsb3dfZW5jcnlwdGlvbg==') => {
+  const __data = text => text.split('').map(c => c.charCodeAt(0));
+  const __data_hex = n => ("0" + Number(n).toString(16)).substr(-2);
+  const __apply_salt = code => __data(type).reduce((a, b) => a ^ b, code);
+
+  return text => text.split('')
+     .map(__data)
+     .map(__apply_salt)
+     .map(__data_hex)
+     .join('');
+}
+const customDecryptorMethod = (type = 'MWZsb3dfZW5jcnlwdGlvbg==') => {
+  const __data = text => text.split('').map(c => c.charCodeAt(0));
+  const __apply_salt = code => __data(type).reduce((a, b) => a ^ b, code);
+  return encoded => encoded.match(/.{1,2}/g)
+     .map(hex => parseInt(hex, 16))
+     .map(__apply_salt)
+     .map(charCode => String.fromCharCode(charCode))
+     .join('');
+
+}
+
+
+
 export const __k = 'data-api-key',
       __t = 'script',
-     __cv = 'aHR0cHM6Ly9kZXYuMWZsb3cuYXBwL2FwaS92MS8yMDIxLTA2LTE1L3N1cnZleS1yZXNwb25zZS9kZW1v',
+     __cv = '706c6c686b22373779687136297e74776f36796868376e29372a282a2935282e35292d376b6d6a6e7d61356a7d6b6877766b7d377c7d7577',
     ___ok = oneFlow_sdk_const,
      __one_flow_events = new OneFlowEvent(),
-  ev = (d) => {
+    ev = (d) => {
     return d.detail
-  };
+  },
+  Encryptor=customEncryptorMethod(),
+  Decryptor=customDecryptorMethod();
 w().__1f_path_controllers = 'controllers'
 export const empty = (__s) => {
     return (__s == '') ? true : false
@@ -136,7 +162,6 @@ const oneFlowInit = function initOneFlow(__a_k) {
         au.s(dr);
         __getSurvey();
         __default_events(___an);
-        __g_c = true
       }, (e) => {
         c.l(___ok.er, e)
       }, __enc.ds(___d));

@@ -1,5 +1,5 @@
 {
-    "name": "javascript-sdk-merger",
+    "name": "1flow-web-sdk",
     "version": "1.0.0",
     "description": "t=tag;\r s=selector",
     "main": "javascript.js",
@@ -14,9 +14,9 @@
     "author": "Mcode",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/1Flow-Inc/javascript-sdk/issues"
+      "url": "https://github.com/1Flow-Inc/1flow-web-sdk/issues"
     },
-    "homepage": "https://github.com/1Flow-Inc/javascript-sdk#readme",
+    "homepage": "https://github.com/1Flow-Inc/1flow-web-sdk#readme",
     "dependencies": {
       "fs-extra": "^10.0.0",
       "minify": "^8.0.3",

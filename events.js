@@ -1,4 +1,4 @@
-import {oneFlowGlob,__result,_type,__one_flow_events,___ok,oneFlowEvents,oneFlowLogUser} from './index'
+import {oneFlowGlob,__result,_type,__one_flow_events,___ok,oneFlowEvents,oneFlowLogUser,ev} from './index'
 import {A} from "1flow-web-sdk/controllers/a"
 import {Events} from "1flow-web-sdk/controllers/event"
 import {L} from "1flow-web-sdk/controllers/l"
