@@ -9,14 +9,14 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/1Flow-Inc/javascript-sdk.git"
+      "url": "git+https://github.com/1Flow-Inc/1flow-web-sdk.gitt"
     },
     "author": "1flow",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/1Flow-Inc/javascript-sdk/issues"
+      "url": "https://github.com/1Flow-Inc/1flow-web-sdk.git/issues"
     },
-    "homepage": "https://github.com/1Flow-Inc/javascript-sdk#readme",
+    "homepage": "https://github.com/1Flow-Inc/1flow-web-sdk.git#readme",
     "dependencies": {
       "fs-extra": "^10.0.0",
       "minify": "^8.0.3",
