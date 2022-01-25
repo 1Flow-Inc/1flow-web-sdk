@@ -1,6 +1,7 @@
 
-import {oneFlowGlob,__result,_type,__one_flow_events,___ok} from '../index'
+import {oneFlowGlob,__result,_type,__one_flow_events,___ok,__k} from '../index'
 import {An} from './an'
+import {F} from './f'
 export class surveySubmission extends An {
     constructor() {
         super();
@@ -116,7 +117,7 @@ export class surveySubmission extends An {
             //Creating survey object to save data
             this.createObj(["survey_data", {
                 "survey_id": survey_id, "os": this.__os(), "analytic_user_id": u.au,
-                "session_id": u.s_id, "trigger_event": trigger_event, "answers": this.answers
+                "session_id": u.s_id, "trigger_event": trigger_event, "answers": this.answers,"mode":$this.gtcn().m
             }]);
             //USED CONSTANT FOR F
             request.req($this.getUrl(___ok.__survey.api), ___ok.__request.p, (dr) => {

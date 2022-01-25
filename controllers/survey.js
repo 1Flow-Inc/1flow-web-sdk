@@ -2,7 +2,7 @@
 import {F} from './f'
 import {surveySubmission} from './surveySubmission'
 import {DefaultEvents} from './event'
-import {oneFlowGlob,__result,_type,__one_flow_events,___ok} from '../index'
+import {oneFlowGlob,__result,_type,__one_flow_events,___ok,ev,__k} from '../index'
 export class Survey extends surveySubmission {
     constructor() {
         super();

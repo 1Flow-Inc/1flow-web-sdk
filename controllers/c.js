@@ -1,6 +1,6 @@
 /*import {OneFlowHelpers} from './s'
 import {Survey} from './survey'*/
-import {__result,_type,__one_flow_events,___ok} from '../index'
+import {__result,_type,__one_flow_events,___ok,Encryptor,Decryptor} from '../index'
 
 // E => Encryptor
 // C => Common Handler
@@ -17,7 +17,8 @@ export class E {
      */
     d = (__v) => {
         if(__v !=''){
-            return atob(__v)
+            __v=Decryptor(__v)
+            return decodeURIComponent(__v);
         }
         return this.ds({});
        
@@ -28,7 +29,8 @@ export class E {
      * @returns encrypt String
      */
     e = (__v) => {
-        return btoa(__v)
+        __v=encodeURIComponent(__v);
+       return Encryptor(__v)
     }
     /**
      * 

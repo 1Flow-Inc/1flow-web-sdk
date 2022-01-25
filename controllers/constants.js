@@ -22,7 +22,7 @@ const __keys = {
         s:"survey",
         sc:"current_survey",
         ls:"last_submitted",
-        api:"add_survey",
+        api:"add_survey_l",
         g_api:"su_url"
     },
     elements:{

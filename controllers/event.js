@@ -1,7 +1,7 @@
 import {C} from'./c'
 import {F} from'./f'
 import {Survey} from'./survey'
-import {oneFlowGlob,empty,__result,_type,__one_flow_events,___ok} from '../index'
+import {oneFlowGlob,empty,__result,_type,__one_flow_events,___ok,ev,__k} from '../index'
 export class Events extends C {
     constructor(__con) {
         super(__con);
@@ -125,6 +125,7 @@ export class DefaultEvents extends Events {
     addEvent = (__en, __d, __s = false) => {
         let $this = oneFlowGlob();
         let __k = $this.__key;
+        console.log(__k)
         const __helper = this.getHelpers();
         if (__s) {
             __helper.__store_data(___ok.__temp, __d);
