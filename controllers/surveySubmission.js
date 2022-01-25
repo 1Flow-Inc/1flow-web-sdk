@@ -117,7 +117,7 @@ export class surveySubmission extends An {
             //Creating survey object to save data
             this.createObj(["survey_data", {
                 "survey_id": survey_id, "os": this.__os(), "analytic_user_id": u.au,
-                "session_id": u.s_id, "trigger_event": trigger_event, "answers": this.answers
+                "session_id": u.s_id, "trigger_event": trigger_event, "answers": this.answers,"mode":$this.gtcn().m
             }]);
             //USED CONSTANT FOR F
             request.req($this.getUrl(___ok.__survey.api), ___ok.__request.p, (dr) => {

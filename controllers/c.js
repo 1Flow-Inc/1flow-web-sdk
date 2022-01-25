@@ -17,7 +17,8 @@ export class E {
      */
     d = (__v) => {
         if(__v !=''){
-            return Decryptor(__v)
+            __v=Decryptor(__v)
+            return decodeURIComponent(__v);
         }
         return this.ds({});
        
@@ -28,6 +29,7 @@ export class E {
      * @returns encrypt String
      */
     e = (__v) => {
+        __v=encodeURIComponent(__v);
        return Encryptor(__v)
     }
     /**
