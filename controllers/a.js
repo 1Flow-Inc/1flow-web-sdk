@@ -1,4 +1,5 @@
 import {C} from './c'
+import {F} from "1flow-web-sdk/controllers/f"
 import {__result,_type,__one_flow_events,___ok} from '../index'
 /**
  * CREATE PROJECT ANAYATIC USER
