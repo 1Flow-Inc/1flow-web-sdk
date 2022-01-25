@@ -1,17 +1,17 @@
 {
-    "name": "javascript-sdk-merger",
+    "name": "1flow-javascript-sdk",
     "version": "1.0.0",
-    "description": "t=tag;\r s=selector",
-    "main": "javascript.js",
+    "description": "1flow Web SDK",
+    "main": "index.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node javascript.js"
+      "start": "node index.js"
     },
     "repository": {
       "type": "git",
       "url": "git+https://github.com/1Flow-Inc/javascript-sdk.git"
     },
-    "author": "Mcode",
+    "author": "1flow",
     "license": "ISC",
     "bugs": {
       "url": "https://github.com/1Flow-Inc/javascript-sdk/issues"
