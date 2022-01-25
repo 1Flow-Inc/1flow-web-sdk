@@ -301,7 +301,7 @@ export class Survey extends surveySubmission {
             type: 'a',
             attributes: {
                 target: "_blank",
-                href: "https://1flow.app/?utm_source=1flow-ios-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
+                href: "https://1flow.app/?utm_source=1flow-web-npm-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
             },
             children: __imgChild
 
