@@ -2,25 +2,25 @@
 import {
   oneFlow_sdk_const
 } from "./controllers/constants"
-import { C, E,OneflowSDK } from "1flow-web-sdk/controllers/c"
+import { C, E,OneflowSDK } from "./controllers/c"
 
 import {
   OneFlowEvent
-} from "1flow-web-sdk/controllers/OneFlowEvent"
+} from "./controllers/OneFlowEvent"
 
 import {
   F
-} from "1flow-web-sdk/controllers/f"
+} from "./controllers/f"
 import {
   A
-} from "1flow-web-sdk/controllers/a"
+} from "./controllers/a"
 import {
     Survey
-  } from "1flow-web-sdk/controllers/survey"
+  } from "./controllers/survey"
   
 import {
     DefaultEvents
-  } from "1flow-web-sdk/controllers/event"
+  } from "./controllers/event"
   
 import {
     _1flow,

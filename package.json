@@ -1,30 +1,56 @@
 {
-    "name": "1flow-javascript-sdk",
-    "version": "0.0.1",
-    "description": "1flow Web SDK",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node index.js"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/1Flow-Inc/1flow-web-sdk.git"
-    },
-    "author": "1flow",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/1Flow-Inc/1flow-web-sdk.git/issues"
-    },
-    "homepage": "https://github.com/1Flow-Inc/1flow-web-sdk.git#readme",
-    "dependencies": {
-      "fs-extra": "^10.0.0",
-      "minify": "^8.0.3",
-      "multistream": "^4.1.0"
-    },
-    "engines": {
-      "node": "16.13.2",
-      "npm": "8.3.0"
-    }
-  }
-  
+  "name": "javascript-1flow-sdk",
+  "version": "0.0.1",
+  "description": "1Flow is a smart in-app survey platform for technology startups. This is the official package for 1Flow Javascript SDK. Visit 1flow.app for more information.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "//github.com/1Flow-Inc/1flow-web-sdk.git"
+  },
+  "keywords": [
+    "in-app",
+    "survey",
+    "microsurvey",
+    "micro",
+    "survey",
+    "pendo",
+    "sprig",
+    "1flow",
+    "oneflow",
+    "one",
+    "flow",
+    "_1flow",
+    "user",
+    "research",
+    "surveys",
+    "javascript",
+    "sdk",
+    "js",
+    "sdk",
+    "net",
+    "promoter",
+    "score",
+    "nps",
+    "customer",
+    "satisfaction",
+    "cset",
+    "1flow",
+    "npm",
+    "1flow",
+    "npm",
+    "sdk",
+    "1flow",
+    "sdk",
+    "oneflow",
+    "sdk",
+    "oneflow",
+    "javascript",
+    "sdk",
+    "npm"
+  ],
+  "author": "1Flow-Inc",
+  "license": "SEE LICENSE IN license.txt"
+}

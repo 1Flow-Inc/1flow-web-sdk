@@ -1,8 +1,9 @@
 import {oneFlowGlob,__result,_type,__one_flow_events,___ok,oneFlowEvents,oneFlowLogUser,ev} from './index'
-import {A} from "1flow-web-sdk/controllers/a"
-import {Events} from "1flow-web-sdk/controllers/event"
-import {L} from "1flow-web-sdk/controllers/l"
-import {Session} from "1flow-web-sdk/controllers/session"
+import {A} from "./controllers/a"
+import {Events} from "./controllers/event"
+import {L} from "./controllers/l"
+import {Session} from "./controllers/session"
+
 /**
  * One Flow Event Trigger && Handling 
  * @param {*} event_name String || Event name
