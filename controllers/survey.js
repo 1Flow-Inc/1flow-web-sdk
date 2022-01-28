@@ -7,7 +7,7 @@ export class Survey extends surveySubmission {
     constructor() {
         super();
         this.currentSurvey = {};
-        this.__request=false
+        this.__show_survey=false
     }
 
     /**
@@ -52,30 +52,22 @@ export class Survey extends surveySubmission {
         this.__remove_data(___ok.__answer);
         let sr = this.__storage_data(___ok.__survey.s);
         let __f = false;
+       
         if (this.emptyObj(sr)) {
-            for (i = 0; i < __e.length; i++) {
-                if (!__f) {
-                    let __cs = sr.find((t) => t.trigger_event_name.includes(__e[i].name));
-                    if (__cs) {
-                        if (this.___rs_option(__cs._id)) {
-                            __f = true;
-                            this.__request=false
-                            __cs.current_event_trigger_name = __e[i].name;
-                            this.__store_data(___ok.__survey.sc, __cs);
-                            this.__ls(false)
-                            this.fsKey(__cs._id, this.bs);
-                            const __ev = new DefaultEvents($this.gtcn());
-                            __ev.addSurveyInitEvent(__cs._id);
-                        }
-
+             let __cs = sr.find((t) => t.trigger_event_name.includes(__e[0]?.name));
+            if (__cs) {
+                        this.__show_survey=this.___rs_option(__cs._id)
+                        this.__removeData(___ok.__survey.sc);
+                        __f = true;
+                        __cs.current_event_trigger_name = __e[0].name;
+                        this.__store_data(___ok.__survey.sc, __cs);
+                        this.fsKey(__cs._id, this.bs);
+                        this.sT(()=>{ const __ev = new DefaultEvents($this.gtcn());__ev.addSurveyInitEvent(__cs._id);},2000);
                     }
-                }
-
-            }
+            
         } else {
             __one_flow_events.add(___ok.__events.tr, __e, (d) => { this.trigger_survey(ev(d)) });
         }
-
 
     }
     ___rs_option = (sid) => {
@@ -165,6 +157,8 @@ export class Survey extends surveySubmission {
     @return {*} Set the themes of the Surveys
     */
     bs = (__sd) => {
+        this.sc(__sd, 0);
+        this.CustomFadeIn(10,.25,'one_flow_over_lay')
         let prop = ['--bg--primary-color',  '--hover--color-opacity','--primary_color', '--color_opacity', '--font', '--corner_radius'];
         if (__sd.style !== undefined || __sd.style !== null) {
             for (let i = 0; i < prop.length; i++) {
@@ -184,8 +178,7 @@ export class Survey extends surveySubmission {
             this.cE(null, { "data-theme": __sd.style.display_mode });
         };
 
-        this.sc(__sd, 0);
-        this.CustomFadeIn(10,.25,'one_flow_over_lay')
+      
         this.cSL();//check survey exits in local storage 
     }
     /**
@@ -658,49 +651,60 @@ export class Survey extends surveySubmission {
                 });
                 break;
         }
-        let __pN = { type: 'div', attributes: {}, children: __children };
-
-        parentdata = this.cE(__pN.type, __pN.attributes);
-        if (__pN.children) {
-            this.rE(__pN.children, 'children', parentdata);
-        }
-        _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
-        let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
-        for (let i = 0; i < _list.length; i++) {
-            if (this.gE(_list[i]) !== null) {
-                if(_list[i] === 'nodge'){
-                  this.addDragEvent(this.gE(_list[i]));
-                }else{
-                this.aL(this.gE(_list[i]), 'click', (e) => {
-                    if (_list[i] === 'cross-btn') {
-                        this.CustomFadeOut(10,.25,'one_flow_over_lay')
-                        this._sD('oneflow_main_box');
-                        if (gCIN !== this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
-                    }
-                    else {
-                        this._lA(e);
-                    }
+        if(this.__show_survey){
+            this.__ls(false)
+            this.sT(() => this._effect('add'), 0);
+            let __pN = { type: 'div', attributes: {}, children: __children };
+    
+            parentdata = this.cE(__pN.type, __pN.attributes);
+            if (__pN.children) {
+                this.rE(__pN.children, 'children', parentdata);
+            }
+            _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
+    
+           
+           
+            let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
+            for (let i = 0; i < _list.length; i++) {
+                if (this.gE(_list[i]) !== null) {
+                    if(_list[i] === 'nodge'){
+                      this.addDragEvent(this.gE(_list[i]));
+                    }else{
+                    this.aL(this.gE(_list[i]), 'click', (e) => {
+                        if (_list[i] === 'cross-btn') {
+                            this.CustomFadeOut(10,.25,'one_flow_over_lay')
+                            this._sD('oneflow_main_box');
+                            if (gCIN !== this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
+                        }
+                        else {
+                            this._lA(e);
+                        }
+                    });
+                }
+                }
+            }
+    
+            if (this.gETN('textarea').length !== 0) {
+                this.aL(this.gETN('textarea')[0], 'input', (e) => {
+                    this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
+    
                 });
             }
-            }
-        }
-
-        if (this.gETN('textarea').length !== 0) {
-            this.aL(this.gETN('textarea')[0], 'input', (e) => {
-                this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
-
+            this.aL(this.gE('button_list'), 'mouseover', (e) => {
+                this._mE(e);
             });
-        }
-        this.aL(this.gE('button_list'), 'mouseover', (e) => {
-            this._mE(e);
-        });
-        this.sT(() => this._effect('add'), 2);
-        if (__uS.screens[__iN].input.input_type == 'thank_you') {
-            this.sT(() => {
-                this._sD('oneflow_main');
-                let _s = this.gE('nodge');
-                if (_s) { _s.style.display = 'none'; }
-            }, 3000);
+          
+            if (__uS.screens[__iN].input.input_type == 'thank_you') {
+                this.sT(() => {
+                    this._sD('oneflow_main');
+                    let _s = this.gE('nodge');
+                    if (_s) { _s.style.display = 'none'; }
+                }, 3000);
+            }
+
+
+        }else{
+            _htmlContainer.remove();
         }
     }
 

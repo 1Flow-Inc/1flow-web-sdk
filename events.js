@@ -3,7 +3,6 @@ import {A} from "./controllers/a"
 import {Events} from "./controllers/event"
 import {L} from "./controllers/l"
 import {Session} from "./controllers/session"
-
 /**
  * One Flow Event Trigger && Handling 
  * @param {*} event_name String || Event name
@@ -38,6 +37,7 @@ const one_flow_events = (event_name , data,only_event=false) => {
             }else{
                 
                 __helper.__valid(___ok.s) ? __ev.add($this.__key, __d) : __one_flow_events.add(event_name, __d, (d) => {
+                    __ev.trigger_survey_event(ev(d));
                     __ev.add($this.__key, ev(d))
                 });
             }
@@ -87,8 +87,12 @@ const one_flow_log_user = (d, p = {}) => {
 }
 
 const _1flow={
-    logEvent:(name,time)=>{
-        oneFlowEvents(___ok.__events.e,{name,time});
+    logEvent: (name, parameters) => {
+        oneFlowEvents(___ok.__events.e, {
+            name,
+            time:new Date().valueOf(),
+            parameters
+        });
     },
     logUser:(sys_id,parameters={})=>{
         oneFlowLogUser(sys_id, parameters)

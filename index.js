@@ -47,10 +47,12 @@ const stGbl = (d) => {
 }
 
 export const oneFlowEvents = (name, data, callback) => {
-  let __in = 10;
+  let __in=(window.glob) ? 0 :10
   window.setTimeout(function () {
-
     if (window.glob) {
+      let su = new Survey();
+      let d=[];d.push(data)
+     if(su.__valid(___ok.s)){ su.trigger_survey(d);}
       one_flow_events(name, data)
     } else {
       oneFlowEvents(name, data, callback);

@@ -110,7 +110,7 @@ export class An extends OneFlowHelpers {
 
     CustomFadeIn=(__interval,__opacity,_el)=>{
         let element=this.gE(_el);
-        var op = 0.1;
+        var op = 0.24;
         let __in = setInterval(function () {
             if (op >= __opacity){
                 element.style.opacity = __opacity;

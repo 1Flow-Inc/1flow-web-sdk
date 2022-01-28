@@ -26,6 +26,10 @@ export class Events extends C {
             }, this.ds(d));
         }
     }
+	trigger_survey_event=(__d)=>{
+        const sr = new Survey();
+        sr.trigger_survey(__d);
+    }
     /**
      * 
      * @param {Array} __d   Event Data
@@ -49,11 +53,11 @@ export class Events extends C {
      */
     success = (__d) => {
         const __el = ___ok.__d_events.events;
-        const sr = new Survey();
+      //  const sr = new Survey();
         if (__el.includes(__d[0].name)) {
             this.setDefaultEventData(__d, __el);
         } else {
-            sr.trigger_survey(__d);
+         //   sr.trigger_survey(__d);
         }
 
         const __helper = this.getHelpers();
@@ -162,6 +166,7 @@ export class DefaultEvents extends Events {
     }
     domClickEvents = (__en) => {
         __one_flow_events.add('click', null, (d) => {
+            setTimeout(()=>{
             let tag = d.target.tagName;
             const __attr = this.getAttributes(d.target, d.target.attributes);
             const __tz = this.__timeZone()
@@ -224,6 +229,7 @@ export class DefaultEvents extends Events {
                         }
                 }
             }
+        },200);
         });
     }
 
