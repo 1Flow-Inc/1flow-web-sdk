@@ -129,7 +129,6 @@ export class DefaultEvents extends Events {
     addEvent = (__en, __d, __s = false) => {
         let $this = oneFlowGlob();
         let __k = $this.__key;
-        console.log(__k)
         const __helper = this.getHelpers();
         if (__s) {
             __helper.__store_data(___ok.__temp, __d);
