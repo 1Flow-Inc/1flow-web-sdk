@@ -1,7 +1,6 @@
 
 import {OneFlowHelpers} from './s'
 import {__result,_type,__one_flow_events,___ok} from '../index'
-
 /**
  This is for the animations
 */
@@ -17,7 +16,7 @@ export class An extends OneFlowHelpers {
         if (_elem) {
             _elem.style.transition = "all 2s ease-in-out";
             _elem.style.bottom = "0px";
-            this.sT(() => this._effect(), 50);
+            this.sT(() => this._effect(), 50/ 4);
             if (_elem.classList.contains("removeEffect")) _elem.classList.remove("removeEffect")
             else this.sT(() => { _elem.classList.add("removeEffect") }, 1)
             this.__rm_el(_elem);
@@ -63,9 +62,9 @@ export class An extends OneFlowHelpers {
     __rm_el=(element)=>{
         if(this.__screen_details('width') > 600){
         if(element.classList.contains('removeEffect')){
-            this.sT(()=>{element.remove();},500);
+            this.sT(()=>{element.remove();},500 / 4);
         }else{
-            this.sT(()=>{this.__rm_el(element) ;},100);
+            this.sT(()=>{this.__rm_el(element) ;},100 / 4);
          
         }
     }
@@ -77,7 +76,7 @@ export class An extends OneFlowHelpers {
     _rCB = () => {
         let elmnt = this.gE("finish");
         elmnt.classList.remove("removeEffect");
-        this.sT(() => { elmnt.classList.add("effectapply") }, 500)
+        this.sT(() => { elmnt.classList.add("effectapply") }, 500 / 4)
 
     }
     /**
@@ -120,7 +119,7 @@ export class An extends OneFlowHelpers {
             element.style.opacity = op;
            // element.style.filter = 'opacity=' + op * .20 ;
             op += (op * 0.100).toFixed(2);;
-        }, __interval);
+        }, __interval / 4);
     }
 
     CustomFadeOut=(__interval,__opacity,_el)=>{
@@ -139,7 +138,7 @@ export class An extends OneFlowHelpers {
            // element.style.filter = 'opacity=' + op * .20 ;
             op -= (op * 0.100).toFixed(2);
             op=op.toFixed(2);
-        }, __interval);
+        }, __interval/ 4);
     }
     }
 }
