@@ -7,7 +7,7 @@ export class Survey extends surveySubmission {
     constructor() {
         super();
         this.currentSurvey = {};
-        this.__show_survey=false
+        this.__request=false
     }
 
     /**
@@ -52,22 +52,31 @@ export class Survey extends surveySubmission {
         this.__remove_data(___ok.__answer);
         let sr = this.__storage_data(___ok.__survey.s);
         let __f = false;
-       
         if (this.emptyObj(sr)) {
-             let __cs = sr.find((t) => t.trigger_event_name.includes(__e[0]?.name));
-            if (__cs) {
-                        this.__show_survey=this.___rs_option(__cs._id)
-                        this.__removeData(___ok.__survey.sc);
-                        __f = true;
-                        __cs.current_event_trigger_name = __e[0].name;
-                        this.__store_data(___ok.__survey.sc, __cs);
-                        this.fsKey(__cs._id, this.bs);
-                        this.sT(()=>{ const __ev = new DefaultEvents($this.gtcn());__ev.addSurveyInitEvent(__cs._id);},2000);
+            for (i = 0; i < __e.length; i++) {
+                if (!__f) {
+                    let __cs = sr.find((t) => t.trigger_event_name.includes(__e[i].name));
+                    if (__cs) {
+                        if (this.___rs_option(__cs._id)) {
+                            __f = true;
+                            this.__request=false;
+							 this.gE(___ok.__element.__in_root.id);
+                            __cs.current_event_trigger_name = __e[i].name;
+                            this.__store_data(___ok.__survey.sc, __cs);
+                            this.__ls(false)
+                            this.fsKey(__cs._id, this.bs);
+                            const __ev = new DefaultEvents($this.gtcn());
+                            __ev.addSurveyInitEvent(__cs._id);
+                        }
+
                     }
-            
+                }
+
+            }
         } else {
             __one_flow_events.add(___ok.__events.tr, __e, (d) => { this.trigger_survey(ev(d)) });
         }
+
 
     }
     ___rs_option = (sid) => {
@@ -148,7 +157,13 @@ export class Survey extends surveySubmission {
         let __iNS = this.gNIS(__cSL);
         let __hC = this.gE(___ok.__element.__in_root.id);
         __hC.innerHTML = '';
-        this.sc(this.currentSurvey, __iNS);
+        let __c_ans={
+            index:__iNS,
+            ans:  (this.answers[this.answers.length -1].answer_value)? this.answers[this.answers.length -1].answer_value :this.answers[this.answers.length -1].answer_index
+        };
+    
+        let __n_key=this.checkQuestionLogic(__c_ans, this.currentSurvey.screens);
+        this.sc(this.currentSurvey, __n_key);
         this.rL('click', this._lA);
     }
    
@@ -157,8 +172,6 @@ export class Survey extends surveySubmission {
     @return {*} Set the themes of the Surveys
     */
     bs = (__sd) => {
-        this.sc(__sd, 0);
-        this.CustomFadeIn(10,.25,'one_flow_over_lay')
         let prop = ['--bg--primary-color',  '--hover--color-opacity','--primary_color', '--color_opacity', '--font', '--corner_radius'];
         if (__sd.style !== undefined || __sd.style !== null) {
             for (let i = 0; i < prop.length; i++) {
@@ -178,7 +191,8 @@ export class Survey extends surveySubmission {
             this.cE(null, { "data-theme": __sd.style.display_mode });
         };
 
-      
+        this.sc(__sd, 0);
+        this.CustomFadeIn(10,.25,'one_flow_over_lay')
         this.cSL();//check survey exits in local storage 
     }
     /**
@@ -651,60 +665,49 @@ export class Survey extends surveySubmission {
                 });
                 break;
         }
-        if(this.__show_survey){
-            this.__ls(false)
-            this.sT(() => this._effect('add'), 0);
-            let __pN = { type: 'div', attributes: {}, children: __children };
-    
-            parentdata = this.cE(__pN.type, __pN.attributes);
-            if (__pN.children) {
-                this.rE(__pN.children, 'children', parentdata);
-            }
-            _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
-    
-           
-           
-            let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
-            for (let i = 0; i < _list.length; i++) {
-                if (this.gE(_list[i]) !== null) {
-                    if(_list[i] === 'nodge'){
-                      this.addDragEvent(this.gE(_list[i]));
-                    }else{
-                    this.aL(this.gE(_list[i]), 'click', (e) => {
-                        if (_list[i] === 'cross-btn') {
-                            this.CustomFadeOut(10,.25,'one_flow_over_lay')
-                            this._sD('oneflow_main_box');
-                            if (gCIN !== this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
-                        }
-                        else {
-                            this._lA(e);
-                        }
-                    });
-                }
-                }
-            }
-    
-            if (this.gETN('textarea').length !== 0) {
-                this.aL(this.gETN('textarea')[0], 'input', (e) => {
-                    this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
-    
+        let __pN = { type: 'div', attributes: {}, children: __children };
+
+        parentdata = this.cE(__pN.type, __pN.attributes);
+        if (__pN.children) {
+            this.rE(__pN.children, 'children', parentdata);
+        }
+        _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
+        let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
+        for (let i = 0; i < _list.length; i++) {
+            if (this.gE(_list[i]) !== null) {
+                if(_list[i] === 'nodge'){
+                  this.addDragEvent(this.gE(_list[i]));
+                }else{
+                this.aL(this.gE(_list[i]), 'click', (e) => {
+                    if (_list[i] === 'cross-btn') {
+                        this.CustomFadeOut(10,.25,'one_flow_over_lay')
+                        this._sD('oneflow_main_box');
+                        if (gCIN !== this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
+                    }
+                    else {
+                        this._lA(e);
+                    }
                 });
             }
-            this.aL(this.gE('button_list'), 'mouseover', (e) => {
-                this._mE(e);
-            });
-          
-            if (__uS.screens[__iN].input.input_type == 'thank_you') {
-                this.sT(() => {
-                    this._sD('oneflow_main');
-                    let _s = this.gE('nodge');
-                    if (_s) { _s.style.display = 'none'; }
-                }, 3000);
             }
+        }
 
+        if (this.gETN('textarea').length !== 0) {
+            this.aL(this.gETN('textarea')[0], 'input', (e) => {
+                this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
 
-        }else{
-            _htmlContainer.remove();
+            });
+        }
+        this.aL(this.gE('button_list'), 'mouseover', (e) => {
+            this._mE(e);
+        });
+        this.sT(() => this._effect('add'), 2);
+        if (__uS.screens[__iN].input.input_type == 'thank_you') {
+            this.sT(() => {
+                this._sD('oneflow_main');
+                let _s = this.gE('nodge');
+                if (_s) { _s.style.display = 'none'; }
+            }, 3000);
         }
     }
 
@@ -872,4 +875,222 @@ export class Survey extends surveySubmission {
         })
         return __svg;
     }
+
+    checkQuestionLogic(qus_ans,all_questions) {
+        let __cur_key = qus_ans.index - 1
+        let key;
+        const ans = qus_ans.ans, rules = all_questions[__cur_key]?.rules;
+        let screen = all_questions;
+    
+        if (rules && Object.keys(rules).length > 0) {
+          const __qus_logic = rules.dataLogic
+          let __apply = false
+          if (__qus_logic && __qus_logic.length > 0) {
+            let i;
+            for (i = 0; i < __qus_logic.length; i++) {
+              /*---------FOR IS CONDITION---------*/
+              if (__qus_logic[i].condition == ___ok.__logic.__con[0]) {
+    
+                if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
+                  if (__qus_logic[i].values === ans?.toString()) {
+                    if (__qus_logic[i].action == ___ok.__logic.__default_value) {
+                      key = screen.length
+                      __apply = true;
+                      return key -1
+                    } else {
+                      key = screen.findIndex((question) => question._id === __qus_logic[i].action);
+    
+                      if (key < __cur_key) {
+                        return __cur_key + 1
+                      }
+                      __apply = true;
+                      return key
+                    }
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
+                  if (__qus_logic[i].values === ans?.toString()) {
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
+                  if (__qus_logic[i].values === ans?.toString()) {
+                    window.open(
+                      __qus_logic[i].action,
+                      '_blank'
+                    );
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+    
+                }
+              }
+              /*-----------END IF CONDITION------------*/
+    
+              /*---------FOR IS NOT CONDITION---------*/
+              if (__qus_logic[i].condition == ___ok.__logic.__con[1] && !__apply) {
+                if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
+                  if (__qus_logic[i].values !== ans?.toString()) {
+                    if (__qus_logic[i].action == ___ok.__logic.__default_value) {
+                      key =  screen.length
+                      __apply = true;
+                      return key -1
+                    } else {
+                      key = screen.findIndex((question) => question._id === __qus_logic[i].action);
+    
+                      if (key <= __cur_key) {
+                        return __cur_key + 1
+                      }
+                      __apply = true;
+                      return key
+                    }
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
+                  if (__qus_logic[i].values !== ans?.toString()) {
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[3]) {
+                  if (__qus_logic[i].values !== ans?.toString()) {
+                    window.open(
+                      __qus_logic[i].action,
+                      '_blank'
+                    );
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+    
+                }
+              }
+              /*-----------END IF NOT CONDITION------------*/
+    
+              /*---------FOR IS ONE OF CONDITION---------*/
+              if (__qus_logic[i].condition == ___ok.__logic.__con[2] && !__apply) {
+    
+                if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
+                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    if (__qus_logic[i].action == ___ok.__logic.__default_value) {
+                      key = screen.length
+                      __apply = true;
+                      return key -1
+                    } else {
+                      key = screen.findIndex((question) => question._id === __qus_logic[i].action);
+    
+                      if (key <= __cur_key) {
+                        return __cur_key + 1
+                      }
+                      __apply = true;
+                      return key
+                    }
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
+                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
+                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    window.open(
+                      __qus_logic[i].action,
+                      '_blank'
+                    );
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+    
+                }
+    
+              }
+              /*-----------END IF ONE OF CONDITION------------*/
+    
+              /*---------FOR IS NONE OF CONDITION---------*/
+              if (__qus_logic[i].condition == ___ok.__logic.__con[3] && !__apply) {
+                if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
+                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    if (__qus_logic[i].action == ___ok.__logic.__default_value) {
+                      key = screen.length
+                      __apply = true;
+                      return key -1
+                    } else {
+                      key = screen.findIndex((question) => question._id === __qus_logic[i].action);
+    
+                      if (key <= __cur_key) {
+                        return __cur_key + 1
+                      }
+                      __apply = true;
+                      return key
+                    }
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
+                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
+                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    window.open(
+                      __qus_logic[i].action,
+                      '_blank'
+                    );
+                    __apply = true;
+                    return __cur_key + 1
+                  }
+    
+                }
+    
+              }
+              /*-----------END IF NONE OF CONDITION------------*/
+    
+              /*---------FOR IS ANY CONDITION---------*/
+              if (__qus_logic[i].condition == ___ok.__logic.__con[4] && !__apply) {
+                if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
+                  if (__qus_logic[i].action == ___ok.__logic.__default_value) {
+                    key = screen.length
+                    __apply = true;
+                    return key -1
+                  } else {
+                    key = screen.findIndex((question) => question._id === __qus_logic[i].action);
+                    if (key <= __cur_key) {
+                      return __cur_key + 1
+                    }
+                    __apply = true;
+                    return key
+                  }
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
+                  __apply = true;
+                  return __cur_key + 1
+                }
+                if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
+                  window.open(
+                    __qus_logic[i].action,
+                    '_blank'
+                  );
+                  __apply = true;
+                  return __cur_key + 1
+                }
+    
+              }
+              /*-----------END IF ANY CONDITION------------*/
+    
+              if ((__qus_logic.length - 1) == i) {
+                return __cur_key + 1
+              }
+    
+            }
+          } else {
+            return __cur_key + 1
+           }
+        } else {
+          return __cur_key + 1
+        }
+    
+      }
 }

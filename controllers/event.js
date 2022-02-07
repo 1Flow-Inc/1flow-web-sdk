@@ -166,7 +166,6 @@ export class DefaultEvents extends Events {
     }
     domClickEvents = (__en) => {
         __one_flow_events.add('click', null, (d) => {
-            setTimeout(()=>{
             let tag = d.target.tagName;
             const __attr = this.getAttributes(d.target, d.target.attributes);
             const __tz = this.__timeZone()
@@ -229,7 +228,6 @@ export class DefaultEvents extends Events {
                         }
                 }
             }
-        },200);
         });
     }
 

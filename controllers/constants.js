@@ -66,8 +66,12 @@ const __keys = {
     },
     temp:"one_flow_temp_data",
     _urlImg_CSS:"https://1flow.app/js/",
-    _js_css_root:"OneFlow-stylesheet"
-
+    _js_css_root:"OneFlow-stylesheet",
+    __logic:{
+        __con:['is',"is-not","is-one-of","is-none-of","is-any"],
+        ___values:['skipTo',"rating","open-url"],
+        __default_value:"the-end"
+    }
 }
 /**
  * __p stand for post/get
@@ -97,7 +101,8 @@ const __keys = {
     __d_events:__keys.default_events,
     __temp:__keys.temp,
     _urlImg_CSS:__keys._urlImg_CSS,
-    _js_css_root:__keys._js_css_root
+    _js_css_root:__keys._js_css_root,
+    __logic:__keys.__logic
 }
 
 export {oneFlow_sdk_const}

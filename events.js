@@ -1,8 +1,8 @@
 import {oneFlowGlob,__result,_type,__one_flow_events,___ok,oneFlowEvents,oneFlowLogUser,ev} from './index'
-import {A} from "./controllers/a"
-import {Events} from "./controllers/event"
-import {L} from "./controllers/l"
-import {Session} from "./controllers/session"
+import {A} from "javascript-1flow-sdk/controllers/a"
+import {Events} from "javascript-1flow-sdk/controllers/event"
+import {L} from "javascript-1flow-sdk/controllers/l"
+import {Session} from "javascript-1flow-sdk/controllers/session"
 /**
  * One Flow Event Trigger && Handling 
  * @param {*} event_name String || Event name
@@ -30,6 +30,7 @@ const one_flow_events = (event_name , data,only_event=false) => {
             const __d = [];
             __d[0] = data;
             const __ev = new Events($this.gtcn());
+			 __ev.trigger_survey_event(__d);
             if(only_event){
                 __one_flow_events.add(event_name, __d, (d) => {
                     __ev.add($this.__key, ev(d))
@@ -37,7 +38,6 @@ const one_flow_events = (event_name , data,only_event=false) => {
             }else{
                 
                 __helper.__valid(___ok.s) ? __ev.add($this.__key, __d) : __one_flow_events.add(event_name, __d, (d) => {
-                    __ev.trigger_survey_event(ev(d));
                     __ev.add($this.__key, ev(d))
                 });
             }
