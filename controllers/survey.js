@@ -917,9 +917,9 @@ export class Survey extends surveySubmission {
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
                   if (__qus_logic[i].values === ans?.toString()) {
                     window.open(
-                      __qus_logic[i].action,
-                      '_blank'
-                    );
+                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                        '_blank'
+                      );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -956,9 +956,9 @@ export class Survey extends surveySubmission {
                 if (__qus_logic[i].type == ___ok.__logic.___values[3]) {
                   if (__qus_logic[i].values !== ans?.toString()) {
                     window.open(
-                      __qus_logic[i].action,
-                      '_blank'
-                    );
+                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                        '_blank'
+                      );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -969,9 +969,10 @@ export class Survey extends surveySubmission {
     
               /*---------FOR IS ONE OF CONDITION---------*/
               if (__qus_logic[i].condition == ___ok.__logic.__con[2] && !__apply) {
-    
+                
                 if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
-                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (values.includes(ans?.toString())) {
                     if (__qus_logic[i].action == ___ok.__logic.__default_value) {
                       key = screen.length
                       __apply = true;
@@ -996,9 +997,9 @@ export class Survey extends surveySubmission {
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
                   if (__qus_logic[i].values.includes(ans?.toString())) {
                     window.open(
-                      __qus_logic[i].action,
-                      '_blank'
-                    );
+                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                        '_blank'
+                      );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -1011,7 +1012,8 @@ export class Survey extends surveySubmission {
               /*---------FOR IS NONE OF CONDITION---------*/
               if (__qus_logic[i].condition == ___ok.__logic.__con[3] && !__apply) {
                 if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
-                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (!values.includes(ans?.toString())) {
                     if (__qus_logic[i].action == ___ok.__logic.__default_value) {
                       key = screen.length
                       __apply = true;
@@ -1036,9 +1038,9 @@ export class Survey extends surveySubmission {
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
                   if (!__qus_logic[i].values.includes(ans?.toString())) {
                     window.open(
-                      __qus_logic[i].action,
-                      '_blank'
-                    );
+                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                        '_blank'
+                      );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -1070,7 +1072,7 @@ export class Survey extends surveySubmission {
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
                   window.open(
-                    __qus_logic[i].action,
+                    (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
                     '_blank'
                   );
                   __apply = true;
