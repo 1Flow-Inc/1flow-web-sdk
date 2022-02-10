@@ -21,7 +21,7 @@ oneFlowInit('<your-project-api-key>')
 ```
 
 <aside>
-💡 Note: you need to replace `"your-project-api-key"` with your actual project API key. Click [here](https://dashboard.1flow.app/#/setting) and navigate to **Project Settings** to get your key in the **API keys** section.
+💡 Note: you need to replace `"your-project-api-key"` with your actual project API key. Click [here](https://dashboard.1flow.app/setting) and navigate to **Project Settings** to get your key in the **API keys** section.
 
 </aside>
 
