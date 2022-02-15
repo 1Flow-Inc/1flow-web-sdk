@@ -3,6 +3,7 @@ import {A} from "javascript-1flow-sdk/controllers/a"
 import {Events} from "javascript-1flow-sdk/controllers/event"
 import {L} from "javascript-1flow-sdk/controllers/l"
 import {Session} from "javascript-1flow-sdk/controllers/session"
+import {SurveyPreview} from "javascript-1flow-sdk/controllers/survey-preview"
 /**
  * One Flow Event Trigger && Handling 
  * @param {*} event_name String || Event name
@@ -96,6 +97,10 @@ const _1flow={
     },
     logUser:(sys_id,parameters={})=>{
         oneFlowLogUser(sys_id, parameters)
+    },
+    previewSurvey:(__s)=>{
+        let __preview=new SurveyPreview();
+        __preview.showPreview(__s);
     }
 }
 

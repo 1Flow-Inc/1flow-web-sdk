@@ -7,7 +7,8 @@ export class Survey extends surveySubmission {
     constructor() {
         super();
         this.currentSurvey = {};
-        this.__request=false
+        this.__show_survey=false
+        this.__demo_survey=false
     }
 
     /**
@@ -19,6 +20,7 @@ export class Survey extends surveySubmission {
         const request = new F($this.__key);
         this.appendOneFlowStyle()
         request.req($this.getUrl(___ok.__survey.g_api,$this.gtcn().m), ___ok.__request.p, (d) => {
+            
             this.__store_data(___ok.__survey.s, __result(this.dp(d)))
             const _r = __result(this.dp(d));
             this.__eventTrigger(___ok.__events.tr);
@@ -52,27 +54,19 @@ export class Survey extends surveySubmission {
         this.__remove_data(___ok.__answer);
         let sr = this.__storage_data(___ok.__survey.s);
         let __f = false;
+       
         if (this.emptyObj(sr)) {
-            for (i = 0; i < __e.length; i++) {
-                if (!__f) {
-                    let __cs = sr.find((t) => t.trigger_event_name.includes(__e[i].name));
-                    if (__cs) {
-                        if (this.___rs_option(__cs._id)) {
-                            __f = true;
-                            this.__request=false;
-							 this.gE(___ok.__element.__in_root.id);
-                            __cs.current_event_trigger_name = __e[i].name;
-                            this.__store_data(___ok.__survey.sc, __cs);
-                            this.__ls(false)
-                            this.fsKey(__cs._id, this.bs);
-                            const __ev = new DefaultEvents($this.gtcn());
-                            __ev.addSurveyInitEvent(__cs._id);
-                        }
-
+             let __cs = sr.find((t) => t.trigger_event_name.includes(__e[0]?.name));
+            if (__cs) {
+                        this.__show_survey=this.___rs_option(__cs._id)
+                        this.__removeData(___ok.__survey.sc);
+                        __f = true;
+                        __cs.current_event_trigger_name = __e[0].name;
+                        this.__store_data(___ok.__survey.sc, __cs);
+                        this.fsKey(__cs._id, this.bs);
+                        this.sT(()=>{ const __ev = new DefaultEvents($this.gtcn());__ev.addSurveyInitEvent(__cs._id);},2000);
                     }
-                }
-
-            }
+            
         } else {
             __one_flow_events.add(___ok.__events.tr, __e, (d) => { this.trigger_survey(ev(d)) });
         }
@@ -83,11 +77,12 @@ export class Survey extends surveySubmission {
 
         let __ls = this.__storage_data(___ok.__survey.ls);
         let __r = true
-
+        
         if (this.emptyObj(__ls)) {
             __ls = __ls.__ls;
             if (this.emptyObj(__ls)) {
                 let __cs = __ls.find((s) => s.id === sid);
+             
                 if (__cs && __cs.lt !== null) {
                     let __ct = this.t();
                     if (__ct < __cs.lt) {
@@ -171,7 +166,15 @@ export class Survey extends surveySubmission {
     @param {*} __sd Survey Object
     @return {*} Set the themes of the Surveys
     */
-    bs = (__sd) => {
+    bs = (__sd,__d_s =false) => {
+        this.__demo_survey=__d_s;
+        if(this.__demo_survey){
+            this.__store_data(___ok.__survey.sc, __sd);
+            this.__show_survey=true
+        }
+   
+        this.sc(__sd, 0);
+        this.CustomFadeIn(10,.25,'one_flow_over_lay')
         let prop = ['--bg--primary-color',  '--hover--color-opacity','--primary_color', '--color_opacity', '--font', '--corner_radius'];
         if (__sd.style !== undefined || __sd.style !== null) {
             for (let i = 0; i < prop.length; i++) {
@@ -191,8 +194,8 @@ export class Survey extends surveySubmission {
             this.cE(null, { "data-theme": __sd.style.display_mode });
         };
 
-        this.sc(__sd, 0);
-        this.CustomFadeIn(10,.25,'one_flow_over_lay')
+        
+        
         this.cSL();//check survey exits in local storage 
     }
     /**
@@ -200,7 +203,7 @@ export class Survey extends surveySubmission {
     */
     cSL = () => {
         let _checkAnswer = this.__storage_data(___ok.__answer);
-        if (_checkAnswer) {
+        if (_checkAnswer && !this.__demo_survey) {
             if (Object.keys(_checkAnswer).length !== 0) {
                 this.currentSurvey = this.gCFLS();
                 this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
@@ -261,7 +264,7 @@ export class Survey extends surveySubmission {
   @param {*} e events trigger
   */
     _nd = (e,gCIN) => {
-        if (gCIN > 0) {
+        if (gCIN > 0 && !this.__demo_survey) {
             this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
         }
         this.CustomFadeOut(10,.25,'one_flow_over_lay')
@@ -286,10 +289,10 @@ export class Survey extends surveySubmission {
         let _htmlContainer = this.gE(___ok.__element.__in_root.id);
         let __subChildren = [];
         let parentdata = '';
-
+       
         let gCIN = this.gNIS(__uS.screens[__iN]._id);
        
-        if (gCIN >= this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
+        if (gCIN >= this.currentSurvey.screens.length && !this.__demo_survey) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
         let __logo = [];
         let __children = [
             { type: 'div', attributes: { id: "nodge", class: "nodge", draggable:"true" } },
@@ -308,7 +311,7 @@ export class Survey extends surveySubmission {
             type: 'a',
             attributes: {
                 target: "_blank",
-                href: "https://1flow.app/?utm_source=1flow-web-npm-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
+                href: "https://1flow.app/?utm_source=1flow-javascript-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
             },
             children: __imgChild
 
@@ -627,7 +630,7 @@ export class Survey extends surveySubmission {
                     type: 'a',
                     attributes: {
                         target: "_blank",
-                        href: "https://1flow.app/?utm_source=1flow-npm-web-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
+                        href: "https://1flow.app/?utm_source=1flow-ios-sdk&utm_medium=watermark&utm_campaign=real-time+feedback+powered+by+1flow"
                     },
                     children: __subChildImg
 
@@ -665,50 +668,63 @@ export class Survey extends surveySubmission {
                 });
                 break;
         }
-        let __pN = { type: 'div', attributes: {}, children: __children };
-
-        parentdata = this.cE(__pN.type, __pN.attributes);
-        if (__pN.children) {
-            this.rE(__pN.children, 'children', parentdata);
-        }
-        _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
-        let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
-        for (let i = 0; i < _list.length; i++) {
-            if (this.gE(_list[i]) !== null) {
-                if(_list[i] === 'nodge'){
-                  this.addDragEvent(this.gE(_list[i]));
-                }else{
-                this.aL(this.gE(_list[i]), 'click', (e) => {
-                    if (_list[i] === 'cross-btn') {
-                        this.CustomFadeOut(10,.25,'one_flow_over_lay')
-                        this._sD('oneflow_main_box');
-                        if (gCIN !== this.currentSurvey.screens.length) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
-                    }
-                    else {
-                        this._lA(e);
-                    }
+        if(this.__show_survey){
+            this.__ls(false)
+            this.sT(() => this._effect('add'), 0);
+            let __pN = { type: 'div', attributes: {}, children: __children };
+    
+            parentdata = this.cE(__pN.type, __pN.attributes);
+            if (__pN.children) {
+                this.rE(__pN.children, 'children', parentdata);
+            }
+            _htmlContainer.innerHTML = `${parentdata.outerHTML}`;
+    
+           
+           
+            let _list = ['button_list', 'finish_text', 'finish', 'nodge', 'cross-btn'];
+            for (let i = 0; i < _list.length; i++) {
+                if (this.gE(_list[i]) !== null) {
+                    if(_list[i] === 'nodge'){
+                      this.addDragEvent(this.gE(_list[i]));
+                    }else{
+                    this.aL(this.gE(_list[i]), 'click', (e) => {
+                        if (_list[i] === 'cross-btn') {
+                            this.CustomFadeOut(10,.25,'one_flow_over_lay')
+                            this._sD('oneflow_main_box');
+                            if (gCIN !== this.currentSurvey.screens.length && !this.__demo_survey) this.addSurvey(this.currentSurvey._id, this.currentSurvey.current_event_trigger_name);
+                        }
+                        else {
+                            this._lA(e);
+                        }
+                    });
+                }
+                }
+            }
+    
+            if (this.gETN('textarea').length !== 0) {
+                this.aL(this.gETN('textarea')[0], 'input', (e) => {
+                    this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
+    
                 });
             }
-            }
-        }
-
-        if (this.gETN('textarea').length !== 0) {
-            this.aL(this.gETN('textarea')[0], 'input', (e) => {
-                this.gE('txt_count').innerHTML = `${e.target.value.length}/280`;
-
+            this.aL(this.gE('button_list'), 'mouseover', (e) => {
+                this._mE(e);
             });
+          
+            if (__uS.screens[__iN].input.input_type == 'thank_you') {
+                this.sT(() => {
+                    this._sD('oneflow_main');
+                    let _s = this.gE('nodge');
+                    if (_s) { _s.style.display = 'none'; }
+                }, 3000);
+            }
+
+
+        }else{
+            _htmlContainer.remove();
         }
-        this.aL(this.gE('button_list'), 'mouseover', (e) => {
-            this._mE(e);
-        });
-        this.sT(() => this._effect('add'), 2);
-        if (__uS.screens[__iN].input.input_type == 'thank_you') {
-            this.sT(() => {
-                this._sD('oneflow_main');
-                let _s = this.gE('nodge');
-                if (_s) { _s.style.display = 'none'; }
-            }, 3000);
-        }
+        
+       
     }
 
     addDragEvent=(__el)=>{
@@ -875,7 +891,6 @@ export class Survey extends surveySubmission {
         })
         return __svg;
     }
-
     checkQuestionLogic(qus_ans,all_questions) {
         let __cur_key = qus_ans.index - 1
         let key;
@@ -916,10 +931,10 @@ export class Survey extends surveySubmission {
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
                   if (__qus_logic[i].values === ans?.toString()) {
-                    window.open(
-                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
-                        '_blank'
-                      );
+                     window.open(
+                    (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                      '_blank'
+                    );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -956,9 +971,9 @@ export class Survey extends surveySubmission {
                 if (__qus_logic[i].type == ___ok.__logic.___values[3]) {
                   if (__qus_logic[i].values !== ans?.toString()) {
                     window.open(
-                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
-                        '_blank'
-                      );
+                    (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                      '_blank'
+                    );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -969,7 +984,7 @@ export class Survey extends surveySubmission {
     
               /*---------FOR IS ONE OF CONDITION---------*/
               if (__qus_logic[i].condition == ___ok.__logic.__con[2] && !__apply) {
-                
+    
                 if (__qus_logic[i].type == ___ok.__logic.___values[0]) {
                     let values=__qus_logic[i].values.split(",")
                   if (values.includes(ans?.toString())) {
@@ -989,17 +1004,19 @@ export class Survey extends surveySubmission {
                   }
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
-                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (values.includes(ans?.toString())) {
                     __apply = true;
                     return __cur_key + 1
                   }
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
-                  if (__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (values.includes(ans?.toString())) {
                     window.open(
-                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
-                        '_blank'
-                      );
+                    (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                      '_blank'
+                    );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -1030,17 +1047,19 @@ export class Survey extends surveySubmission {
                   }
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[1]) {
-                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (!values.includes(ans?.toString())) {
                     __apply = true;
                     return __cur_key + 1
                   }
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
-                  if (!__qus_logic[i].values.includes(ans?.toString())) {
+                    let values=__qus_logic[i].values.split(",")
+                  if (!values.includes(ans?.toString())) {
                     window.open(
-                        (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
-                        '_blank'
-                      );
+                    (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
+                      '_blank'
+                    );
                     __apply = true;
                     return __cur_key + 1
                   }
@@ -1071,10 +1090,10 @@ export class Survey extends surveySubmission {
                   return __cur_key + 1
                 }
                 if (__qus_logic[i].type == ___ok.__logic.___values[2]) {
-                  window.open(
+                   window.open(
                     (__qus_logic[i].action.indexOf("http://") == 0 || __qus_logic[i].action.indexOf("https://") == 0) ?  __qus_logic[i].action :  `https://${__qus_logic[i].action}`,
-                    '_blank'
-                  );
+                      '_blank'
+                    );
                   __apply = true;
                   return __cur_key + 1
                 }
@@ -1095,4 +1114,5 @@ export class Survey extends surveySubmission {
         }
     
       }
+    
 }
