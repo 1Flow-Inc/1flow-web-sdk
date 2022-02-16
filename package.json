@@ -1,6 +1,6 @@
 {
   "name": "javascript-1flow-sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "1Flow is a smart in-app survey platform for technology startups. This is the official package for 1Flow Javascript SDK. Visit 1flow.app for more information.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "//github.com/1Flow-Inc/1flow-web-sdk.git"
+    "url": "git+https://github.com/1Flow-Inc/1flow-web-sdk.git",
+    "baseUrl": "https://github.com/1Flow-Inc/1flow-web-sdk.git"
   },
   "keywords": [
     "in-app",

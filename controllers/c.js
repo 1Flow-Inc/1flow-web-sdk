@@ -107,7 +107,7 @@ export class C extends E {
      * @param {Object} __ob 
      * @returns Boolean
      */
-    emptyObj = (__ob) => {
+    emptyObj = (__ob ={}) => {
         return Object.keys(__ob).length ? true : false
     }
     /**

@@ -55,6 +55,7 @@ export class Survey extends surveySubmission {
         if (this.emptyObj(sr)) {
             for (i = 0; i < __e.length; i++) {
                 if (!__f) {
+                    if(__e[i]){
                     let __cs = sr.find((t) => t.trigger_event_name.includes(__e[i].name));
                     if (__cs) {
                         if (this.___rs_option(__cs._id)) {
@@ -70,6 +71,7 @@ export class Survey extends surveySubmission {
                         }
 
                     }
+                }
                 }
 
             }
@@ -109,10 +111,8 @@ export class Survey extends surveySubmission {
     fsKey = (__sKey, callback) => {
         const _s = this.__storage_data(___ok.__survey.s)
         if (this.emptyObj(_s)) {
-            if (_s.length !== 0) {
                 let __sur = this.rS(_s, __sKey)
                 callback(__sur);
-            }
         }
     }
     /**
