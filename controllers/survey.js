@@ -56,17 +56,28 @@ export class Survey extends surveySubmission {
         let __f = false;
        
         if (this.emptyObj(sr)) {
-             let __cs = sr.find((t) => t.trigger_event_name.includes(__e[0]?.name));
-            if (__cs) {
-                        this.__show_survey=this.___rs_option(__cs._id)
-                        this.__removeData(___ok.__survey.sc);
-                        __f = true;
-                        __cs.current_event_trigger_name = __e[0].name;
-                        this.__store_data(___ok.__survey.sc, __cs);
-                        this.fsKey(__cs._id, this.bs);
-                        this.sT(()=>{ const __ev = new DefaultEvents($this.gtcn());__ev.addSurveyInitEvent(__cs._id);},2000);
+            for (i = 0; i < __e.length; i++) {
+                if (!__f) {
+                    if(__e[i]){
+                    let __cs = sr.find((t) => t.trigger_event_name.includes(__e[i].name));
+                    if (__cs) {
+                        if (this.___rs_option(__cs._id)) {
+                            __f = true;
+                            this.__request=false;
+							 this.gE(___ok.__element.__in_root.id);
+                            __cs.current_event_trigger_name = __e[i].name;
+                            this.__store_data(___ok.__survey.sc, __cs);
+                            this.__ls(false)
+                            this.fsKey(__cs._id, this.bs);
+                            const __ev = new DefaultEvents($this.gtcn());
+                            __ev.addSurveyInitEvent(__cs._id);
+                        }
+
                     }
-            
+                }
+                }
+
+            }
         } else {
             __one_flow_events.add(___ok.__events.tr, __e, (d) => { this.trigger_survey(ev(d)) });
         }
@@ -104,10 +115,8 @@ export class Survey extends surveySubmission {
     fsKey = (__sKey, callback) => {
         const _s = this.__storage_data(___ok.__survey.s)
         if (this.emptyObj(_s)) {
-            if (_s.length !== 0) {
                 let __sur = this.rS(_s, __sKey)
                 callback(__sur);
-            }
         }
     }
     /**

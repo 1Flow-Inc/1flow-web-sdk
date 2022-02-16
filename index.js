@@ -112,7 +112,7 @@ export const empty = (__s) => {
     return (__d.result) ? __d.result : {}
   },
   _type = (__d) => {
-    return typeof __d
+    return (__d) ? typeof __d : '';
   },
   oneFlowGlob = () => {
     return __G.glob
