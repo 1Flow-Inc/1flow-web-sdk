@@ -63,7 +63,12 @@ export const oneFlowEvents = (name, data, callback) => {
   let __in = 10;
   window.setTimeout(function () {
     if (window.glob) {
-      one_flow_log_user(sys, data)
+      const __helper = oneFlowGlob().getHelpers();
+      if(__helper.__valid(___ok.s)){
+         one_flow_log_user(sys, data)
+      }else{
+        oneFlowLogUser(sys, data, callback);
+      }
     } else {
       oneFlowLogUser(sys, data, callback);
     }
