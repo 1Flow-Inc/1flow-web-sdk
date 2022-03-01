@@ -15,9 +15,9 @@ npm install javascript-1flow-sdk
 Place the below code inside your web app: 
 
 ```jsx
-import { oneFlowInit } from 'javascript-1flow-sdk';
+import { oneflow } from 'javascript-1flow-sdk';
 
-oneFlowInit('<your-project-api-key>')
+oneflow.oneFlowInit('<your-project-api-key>')
 ```
 
 <aside>
@@ -32,17 +32,17 @@ You need to track events in order to use these events as triggers of 1Flow in-ap
 - You can give an event contextual info by placing any key-value pairs inside the `{}`:
 
 ```jsx
-import { _1flow } from 'javascript-1flow-sdk';
+import { oneflow } from 'javascript-1flow-sdk';
 
-_1flow.logEvent("event_name",{item_id:"123",type:"legos"}); 
+oneflow.logEvent("event_name",{item_id:"123",type:"legos"}); 
 ```
 
 - You can also log events without any parameters:
 
 ```jsx
- import { _1flow } from 'javascript-1flow-sdk';
+ import { oneflow } from 'javascript-1flow-sdk';
 
-	_1flow.logEvent("event_name");
+	oneflow.logEvent("event_name");
 ```
 
 ### Example usage
@@ -50,11 +50,11 @@ _1flow.logEvent("event_name",{item_id:"123",type:"legos"});
 Let’s say you want to trigger an event on a button click. You just need to log that button click event, and then that event can be used to trigger a survey:
 
 ```jsx
-import { _1flow } from 'javascript-1flow-sdk';
+import { oneflow } from 'javascript-1flow-sdk';
 
 myFunction() {    
   ...
-	_1flog.logEvent("event_name");
+	oneflow.logEvent("event_name");
 }
 ```
 
@@ -62,13 +62,13 @@ myFunction() {
 
 If your app requires the user to register an account and sign in, you can call a method to bind the user with 1Flow. This way, you'll be able to connect the data with your internal records.
 
-Whenever the user has signed in, you can call `_1flow.logUser()` to pass the user identifier, along with any other parameters you'd like to store with us, to 1Flow. 
+Whenever the user has signed in, you can call `oneflow.logUser()` to pass the user identifier, along with any other parameters you'd like to store with us, to 1Flow. 
 
 ```jsx
-import { _1flow } from 'javascript-1flow-sdk';
+import { oneflow } from 'javascript-1flow-sdk';
 
 const parameter={'firstName': 'steve', 'lastName': 'jobs', 'number': 123456 };  //parameters are optional.
-_1flow.logUser(userId, parameter); // parameters are optional, if no parameters, then only pass in userId
+oneflow.logUser(userId, parameter); // parameters are optional, if no parameters, then only pass in userId
 ```
 
 # Show your first survey

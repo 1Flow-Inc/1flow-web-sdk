@@ -15,9 +15,6 @@ export class OneFlowEvent {
         if (this.validFunction(action)) {
             this.addEventListener(__key, action);
         }
-        if(this.currentEvent(e) && e === ___ok.__events.tr){
-            return [];
-          }
         this.events.push(event);
         return event;
     }
