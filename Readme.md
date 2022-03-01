@@ -42,7 +42,7 @@ oneflow.logEvent("event_name",{item_id:"123",type:"legos"});
 ```jsx
  import { oneflow } from 'javascript-1flow-sdk';
 
-	oneflow.logEvent("event_name");
+oneflow.logEvent("event_name");
 ```
 
 ### Example usage
