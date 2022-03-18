@@ -7,9 +7,11 @@ declare module 'javascript-1flow-sdk'{
     export function logEvent(event_name:String,params:Object):void
     export function logUser(system_id:string,params:Object):void
     export function oneFlowInit(key:string):void
+    export function on(eveny_name:string,action:any):void
     export const oneflow:{
         oneFlowInit,
         logEvent,
-        logUser
+        logUser,
+        on
     }
 }

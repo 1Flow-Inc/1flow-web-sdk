@@ -15,7 +15,7 @@ function __init(key) {
   if (__doc) {
     __cl(key)
   } else {
-    __st(()=>{__init(key), 10});
+    __st(() => { __init(key), 10 });
   }
 }
 
@@ -24,20 +24,28 @@ const logEvent = (name, pr = {}) => {
   if (__valid()) {
     _1flow.logEvent(name, pr);
   } else {
-    __st(()=>{logEvent(name, pr), 10});
+    __st(() => { logEvent(name, pr), 10 });
+  }
+}
+const on = (__event_name,action) => {
+  if (__valid()) {
+    _1flow.on(__event_name, action);
+  } else {
+    __st(() => { on(__event_name, action), 10 });
   }
 }
 const logUser = (system_id, pr = {}) => {
   if (__valid()) {
     _1flow.logUser(system_id, pr);
   } else {
-    __st(()=>{logUser(system_id, pr), 10});
+    __st(() => { logUser(system_id, pr), 10 });
   }
 }
 const oneFlowInit = (key) => { __init(key); }
-const oneflow=__f({
-  oneFlowInit:oneFlowInit,
-  logEvent:logEvent,
-  logUser:logUser
+const oneflow = __f({
+  oneFlowInit: oneFlowInit,
+  logEvent: logEvent,
+  logUser: logUser,
+  on: on
 });
-module.exports = { oneflow,logUser,logEvent,oneFlowInit }
+module.exports = { oneflow, logUser, logEvent, oneFlowInit }
