@@ -4,7 +4,7 @@ declare module 'javascript-1flow-sdk/react-next'{
 
     export function logEvent(event_name:String,params:Object={}):void
     export function  logUser(system_id:string,paramsL:Object={}):void
-    export function on(eveny_name:string,action:any):void
+    export function on(event_name:string,action:any):void
 
     export const oneFlow:{
         logEvent:logEvent,

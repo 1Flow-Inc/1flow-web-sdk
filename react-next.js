@@ -20,10 +20,10 @@ const logUser = (system_id, pr = {}) => {
 }
 
 const on = (__event_name, action) => {
-  if (__valid()) {
+  if (valid()) {
     _1flow.on(__event_name, action);
   } else {
-    __st(() => { on(__event_name, action), 10 });
+    setTimeout(() => { on(__event_name, action), 10 });
   }
 }
 
