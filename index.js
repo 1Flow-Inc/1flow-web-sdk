@@ -1,5 +1,13 @@
-const __frame = window
-const __doc = document
+let __frame,__doc;
+function init(){
+if(typeof window !=="undefined"){
+   __frame = window
+   __doc = document
+}else{
+  setTimeout(()=>{ init()},500);
+}
+}
+
 const __cl = (key) => {
   const __t = __doc.createElement('script');
   __t.setAttribute('data-api-key', `${key}`);
@@ -48,4 +56,5 @@ const oneflow = __f({
   logUser: logUser,
   on: on
 });
+init();
 module.exports = { oneflow, logUser, logEvent, oneFlowInit }
