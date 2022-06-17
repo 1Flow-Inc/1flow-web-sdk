@@ -11,7 +11,7 @@ if(typeof window !=="undefined"){
 const __cl = (key) => {
   const __t = __doc.createElement('script');
   __t.setAttribute('data-api-key', `${key}`);
-  __t.src = 'https://1flow.app/js/1flow.js';
+  __t.src = 'https://sdk.1flow.app/js/1flow.js';
   __doc.head.appendChild(__t);
 }
 const __f = (__ob) => Object.freeze(__ob);
